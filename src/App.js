@@ -1,14 +1,25 @@
 import React from 'react';
-import Inicio from './components/Inicio.js';
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import Inicio from './components/Inicio.jsx';
+import Menu from './components/menu.jsx';
+import Footer from './components/footer.jsx';
 import ArticulosFamilias from './components/ArticulosFamilias.jsx';
 import './App.css';
 
 export default function App() {
   return (
     <>
-      <div className="divBody">
-        <ArticulosFamilias />
-      </div>
+      <BrowserRouter>
+        <Menu />
+        <div className="divBody">
+          <Routes>
+            <Route path="/inicio" element={<Inicio />} />
+            <Route path="/articulosfamilias" element={<ArticulosFamilias />} />
+            <Route path="*" element={<Navigate to="/Inicio" replace />} />
+          </Routes>
+        </div>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
